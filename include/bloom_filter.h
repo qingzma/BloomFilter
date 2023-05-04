@@ -1,17 +1,12 @@
 #ifndef BF_BLOOM_FILTER_H
 #define BF_BLOOM_FILTER_H
 
+#include "bloom_filter_interface.h"
+
 namespace bf {
-class BloomFilterInterface {
+class BloomFilter : public BloomFilterInterface {
 public:
-  BloomFilterInterface(BloomFilterInterface const &) = delete;
-  BloomFilterInterface &operator=(BloomFilterInterface const &) = delete;
-
-public:
-  BloomFilterInterface() = default;
-  virtual ~BloomFilterInterface() = default;
-
-  template <typename T> void Insert(T const &);
+  BloomFilter(double fp, size_t capacity, size_t seed = 0);
 };
 } // namespace bf
 
