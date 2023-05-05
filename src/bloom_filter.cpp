@@ -1,5 +1,3 @@
 #include "../include/bloom_filter.h"
 
-namespace bf {
-// BloomFilter() {}
-} // namespace bf
+namespace bf {} // namespace bf
