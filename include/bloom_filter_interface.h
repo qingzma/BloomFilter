@@ -2,7 +2,9 @@
 #define BF_BLOOM_FILTER_INTERFACE_H
 
 #include "hash.h"
+#include "object.h"
 #include <stddef.h>
+#include <stdexcept>
 
 namespace bf {
 class BloomFilterInterface {
@@ -12,14 +14,16 @@ public:
 
 public:
   BloomFilterInterface() = default;
-  BloomFilterInterface(double fp, size_t capacity, size_t seed = 0);
+  BloomFilterInterface(double fp, size_t capacity, size_t seed = 0) {
+    throw std::runtime_error("constructor method is not implemented.");
+  };
   virtual ~BloomFilterInterface() = default;
 
-  template <typename T> void Insert(T const &);
+  void Insert(Object const &);
 
-  template <typename T, typename R> R LookUp(T const &);
+  template <typename T> T LookUp(Object const &);
 
-  virtual void clear() = 0;
+  virtual void Clear() = 0;
 };
 } // namespace bf
 
