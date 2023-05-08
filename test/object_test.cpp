@@ -1,3 +1,3 @@
 #include "../include/object.h"
 #include <gtest/gtest.h>
-TEST(objectPageWidthTest, BasicAssertions) { EXPECT_EQ(7, 7); }
+TEST(ObjectTest, ObjectWidthTest) { EXPECT_EQ(7, 7); }

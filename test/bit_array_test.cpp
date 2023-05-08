@@ -2,7 +2,7 @@
 #include <chrono>
 #include <gtest/gtest.h>
 #include <iostream>
-TEST(BitPageSizeTest, BasicAssertions) {
+TEST(BitArrayTest, BitPageSizeTest) {
   bf::BitArray bitArray(100, true);
   // EXPECT_TRUE(bits.n_bits_per_page);
   // EXPECT_EQ(-1, bits.npos);
@@ -11,7 +11,7 @@ TEST(BitPageSizeTest, BasicAssertions) {
   // std::cout << "position of bits is" << bitArray.npos << std::endl;
 };
 
-TEST(BitPageMaskTest, BasicAssertions) {
+TEST(BitArrayTest, BitPageMaskTest) {
   bf::BitArray bitArray(100, true);
   // EXPECT_TRUE(bits.n_bits_per_page);
   // EXPECT_EQ(-1, bits.npos);
@@ -37,7 +37,7 @@ TEST(BitPageMaskTest, BasicAssertions) {
   // std::cout << std::bitset<64>(mask) << std::endl;
 };
 
-TEST(BitSetGetTest, BasicAssertions) {
+TEST(BitArrayTest, BitSetGetTest) {
   bf::BitArray bitArray(100, true);
   EXPECT_EQ(2, bitArray.n_pages);
   EXPECT_EQ(0, bitArray.CountOnes());
@@ -94,7 +94,7 @@ TEST(BitSetGetTest, BasicAssertions) {
   EXPECT_FALSE(bitArray.Get(126));
 };
 
-TEST(benchThroughputTest, BasicAssertions) {
+TEST(BitArrayTest, benchThroughputTest) {
   double cn = 1e8;
   bf::BitArray bitArray(8000, true);
   auto start = std::chrono::high_resolution_clock::now();
@@ -119,7 +119,7 @@ TEST(benchThroughputTest, BasicAssertions) {
             << " G items/second " << std::endl;
 };
 
-TEST(overheadsTest, BasicAssertions) {
+TEST(BitArrayTest, overheadsTest) {
   bf::BitArray bitArray(1, true);
   EXPECT_EQ(bitArray.Overheads(), 8);
 }
