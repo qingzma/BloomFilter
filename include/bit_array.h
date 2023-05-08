@@ -34,6 +34,13 @@ public:
 
   size_type CountOnes() const;
 
+  /**
+   * @brief get the size of this bitmap
+   *
+   * @return size_type size in bytes.
+   */
+  size_type Overheads() const;
+
 public:
   // std::string To_string();
 

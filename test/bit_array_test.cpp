@@ -1,5 +1,5 @@
 #include "../include/bit_array.h"
-#include <bitset>
+#include <chrono>
 #include <gtest/gtest.h>
 #include <iostream>
 TEST(BitPageSizeTest, BasicAssertions) {
@@ -93,3 +93,33 @@ TEST(BitSetGetTest, BasicAssertions) {
   EXPECT_FALSE(bitArray.Get(65));
   EXPECT_FALSE(bitArray.Get(126));
 };
+
+TEST(benchThroughputTest, BasicAssertions) {
+  double cn = 1e8;
+  bf::BitArray bitArray(8000, true);
+  auto start = std::chrono::high_resolution_clock::now();
+  for (int i = 0; i < cn; i++)
+    bitArray.Set(i % 8000);
+  auto stop = std::chrono::high_resolution_clock::now();
+
+  auto seconds =
+      std::chrono::duration_cast<std::chrono::microseconds>(stop - start)
+          .count();
+  std::cout << "throuput for Set is " << (1.0 * cn / seconds) * 1e6 / 1e9
+            << " G items/second " << std::endl;
+
+  // for getter
+  start = std::chrono::high_resolution_clock::now();
+  for (int i = 0; i < cn; i++)
+    bitArray.Get(i % 8000);
+  stop = std::chrono::high_resolution_clock::now();
+  seconds = std::chrono::duration_cast<std::chrono::microseconds>(stop - start)
+                .count();
+  std::cout << "throuput for Get is " << (1.0 * cn / seconds) * 1e6 / 1e9
+            << " G items/second " << std::endl;
+};
+
+TEST(overheadsTest, BasicAssertions) {
+  bf::BitArray bitArray(1, true);
+  EXPECT_EQ(bitArray.Overheads(), 8);
+}
