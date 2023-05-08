@@ -16,7 +16,7 @@ public:
   typedef size_t size_type;
   static page_type constexpr n_bits_per_page =
       std::numeric_limits<page_type>::digits;
-  static size_type constexpr npos = static_cast<size_type>(-1);
+  // static size_type constexpr npos = static_cast<size_type>(-1);
 
 public:
   page_type *bits_;
@@ -42,12 +42,15 @@ public:
   size_type Overheads() const;
 
 public:
-  // std::string To_string();
+  /**
+   * @brief currently, only display the first page
+   *
+   * @return std::string
+   */
+  std::string To_string() const;
 
   // void Clear() noexcept;
 
-  // static_assert(n_bits_per_page == 64);
-  // static_assert(npos == -1);
 public:
   static size_type constexpr page_index(size_type i) {
     return i / n_bits_per_page;

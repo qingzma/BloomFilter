@@ -30,3 +30,7 @@ bf::BitArray::size_type bf::BitArray::CountOnes() const {
 bf::BitArray::size_type bf::BitArray::Overheads() const {
   return sizeof(*bits_) * n_pages;
 }
+
+std::string bf::BitArray::To_string() const {
+  return std::bitset<n_bits_per_page>(bits_[0]).to_string();
+}

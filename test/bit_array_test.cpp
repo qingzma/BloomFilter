@@ -8,7 +8,7 @@ TEST(BitPageSizeTest, BasicAssertions) {
   // EXPECT_EQ(-1, bits.npos);
 
   std::cout << "size of bits is" << bitArray.n_bits_per_page << std::endl;
-  std::cout << "position of bits is" << bitArray.npos << std::endl;
+  // std::cout << "position of bits is" << bitArray.npos << std::endl;
 };
 
 TEST(BitPageMaskTest, BasicAssertions) {
