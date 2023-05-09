@@ -28,7 +28,10 @@ public:
 
   ~CounterArray() { delete[] array_; };
 
-  void Add(T val, size_type i) noexcept { array_[i] += val; };
+  void Add(T val, size_type i) noexcept {
+    assert(i < n_);
+    array_[i] += val;
+  };
 
   void Adds(T val, std::initializer_list<size_type> list) noexcept {
     for (auto i : list) {
@@ -70,7 +73,7 @@ public:
    */
   std::string To_string() const {
     std::string res = "[";
-    for (int i = 0; i < std::min((size_type)50, sizeof(*array_)); i++) {
+    for (int i = 0; i < std::min((size_type)50, n_); i++) {
       res += (std::to_string(array_[i]) + ", ");
     }
     res.pop_back();
