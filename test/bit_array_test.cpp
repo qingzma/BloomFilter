@@ -16,7 +16,7 @@ TEST(BitArrayTest, BitPageMaskTest) {
   // EXPECT_TRUE(bits.n_bits_per_page);
   // EXPECT_EQ(-1, bits.npos);
 
-  bf::BitArray::page_type mask = bitArray.bit_mask(0);
+  bf::page_type mask = bitArray.bit_mask(0);
   EXPECT_EQ(mask, 1);
   // std::cout << std::bitset<64>(mask) << std::endl;
   mask = bitArray.bit_mask(1);

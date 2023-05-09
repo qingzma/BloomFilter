@@ -1,20 +1,18 @@
-#ifndef BF_BITS_H
-#define BF_BITS_H
+#ifndef BF_BIT_ARRAY_H
+#define BF_BIT_ARRAY_H
 
+#include "types.h"
 #include <bitset>
 #include <cassert>
 #include <initializer_list>
 #include <limits>
 #include <memory.h>
-#include <stddef.h>
 #include <string>
 #include <vector>
 
 namespace bf {
 class BitArray {
 public:
-  typedef size_t page_type;
-  typedef size_t size_type;
   static page_type constexpr n_bits_per_page =
       std::numeric_limits<page_type>::digits;
   // static size_type constexpr npos = static_cast<size_type>(-1);
@@ -89,4 +87,4 @@ public:
 
 } // namespace bf
 
-#endif // BF_BITS_H
+#endif // BF_BIT_ARRAY_H

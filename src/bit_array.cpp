@@ -35,14 +35,14 @@ void bf::BitArray::Sets(std::initializer_list<size_type> list) {
   }
 }
 
-bf::BitArray::size_type bf::BitArray::CountOnes() const {
+bf::size_type bf::BitArray::CountOnes() const {
   size_type cnt = 0;
   for (int i = 0; i < n_pages; i++)
     cnt += std::bitset<n_bits_per_page>(bits_[i]).count();
   return cnt;
 };
 
-bf::BitArray::size_type bf::BitArray::Overheads() const {
+bf::size_type bf::BitArray::Overheads() const {
   return sizeof(*bits_) * n_pages;
 }
 

@@ -7,9 +7,10 @@ project(BF)
 set(BF_SOURCES
     src/bloom_filter.cpp
     src/bit_array.cpp
+    src/counter_array.cpp
 )
 
-# include_directories(bf ${CMAKE_SOURCE_DIR}/include)
+include_directories(bf ${CMAKE_SOURCE_DIR}/include)
 add_library(bf
 
     # ${BF_INCLUDES}
