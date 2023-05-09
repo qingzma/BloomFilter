@@ -21,26 +21,46 @@ public:
   size_type n_;
 
 public:
-  CounterArray(size_type size);
+  CounterArray(size_type size) : n_(size) {
+    array_ = new T[size];
+    std::fill_n(array_, size, 0);
+  };
 
-  ~CounterArray();
+  ~CounterArray() { delete[] array_; };
 
-  void Add(T val, size_type i) noexcept;
+  void Add(T val, size_type i) noexcept { array_[i] += val; };
 
-  void Adds(T val, std::initializer_list<size_type> list) noexcept;
+  void Adds(T val, std::initializer_list<size_type> list) noexcept {
+    for (auto i : list) {
+      Add(val, i);
+    };
+  }
 
-  T Get(size_type i) const noexcept;
+  T Get(size_type i) const noexcept { return array_[i]; };
 
-  T GetMin(std::initializer_list<size_type> list) const noexcept;
+  T GetMin(std::initializer_list<size_type> list) const noexcept {
+    T res = std::numeric_limits<T>::max();
+    for (auto elem : list) {
+      res = std::min(res, Get(elem));
+    }
+    return res;
+  };
 
-  size_type CountNonZeros() const noexcept;
+  size_type CountNonZeros() const noexcept {
+    size_type cnt = 0;
+    for (auto &item : array_) {
+      if (item)
+        cnt++;
+    }
+    return cnt;
+  };
 
   /**
    * @brief get the size of this bitmap
    *
    * @return size_type size in bytes.
    */
-  size_type Overheads() const;
+  size_type Overheads() const { return sizeof(*array_) * n_; };
 
 public:
   /**
@@ -48,7 +68,15 @@ public:
    *
    * @return std::string
    */
-  std::string To_string() const;
+  std::string To_string() const {
+    std::string res = "[";
+    for (int i = 0; i < std::min((size_type)50, sizeof(*array_)); i++) {
+      res += (std::to_string(array_[i]) + ", ");
+    }
+    res.pop_back();
+    res += "]";
+    return res;
+  };
 
   // void Clear() noexcept;
 };
