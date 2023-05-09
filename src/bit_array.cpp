@@ -15,9 +15,24 @@ bool bf::BitArray::Get(size_type i) const {
   return bits_[page_index(i)] & bit_mask(i);
 }
 
+bool bf::BitArray::Gets(std::initializer_list<size_type> list) const {
+  for (auto elem : list) {
+    if (!Get(elem))
+      return false;
+  }
+  return true;
+}
+
 void bf::BitArray::Set(size_type i) {
   assert(i < n_bits_);
   bits_[page_index(i)] |= bit_mask(i);
+}
+
+void bf::BitArray::Sets(std::initializer_list<size_type> list) {
+  for (auto elem : list) {
+    if (!Get(elem))
+      Set(elem);
+  }
 }
 
 bf::BitArray::size_type bf::BitArray::CountOnes() const {

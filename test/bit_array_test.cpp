@@ -122,4 +122,15 @@ TEST(BitArrayTest, benchThroughputTest) {
 TEST(BitArrayTest, overheadsTest) {
   bf::BitArray bitArray(1, true);
   EXPECT_EQ(bitArray.Overheads(), 8);
+};
+
+TEST(BitArrayTest, getsSetsTest) {
+  bf::BitArray bitArray(1, true);
+  bitArray.Set(0);
+  bitArray.Set(5);
+  EXPECT_TRUE(bitArray.Gets({0, 5}));
+  EXPECT_FALSE(bitArray.Gets({0, 5, 6}));
+  bitArray.Sets({0, 1, 2, 3, 4});
+  EXPECT_TRUE(bitArray.Gets({0, 1, 2, 3, 4, 5}));
+  EXPECT_FALSE(bitArray.Gets({0, 1, 2, 3, 4, 5, 6, 7}));
 }

@@ -3,6 +3,7 @@
 
 #include <bitset>
 #include <cassert>
+#include <initializer_list>
 #include <limits>
 #include <memory.h>
 #include <stddef.h>
@@ -30,7 +31,11 @@ public:
 
   void Set(size_type i);
 
+  void Sets(std::initializer_list<size_type> list);
+
   bool Get(size_type i) const;
+
+  bool Gets(std::initializer_list<size_type> list) const;
 
   size_type CountOnes() const;
 
